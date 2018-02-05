@@ -15,9 +15,10 @@ if (actual.version != expected.version) {
 }
 
 app.use(express.json())         // Makes sure we can parse JSON that is sent to our API
-app.set('view engine', 'pug')   // Allows our views to be constructed using the Pug templating engine
-app.set('views', './views')     // Tells our app where our view (.pug) files are located
-require("./models");            // Loads our models
+app.use("public",express.static(`${process.cwd()}/public`)); // Tells our app where our client-side assets live
+app.set("view engine", "ejs")   // Allows our views to be constructed using ejs templating
+app.set("views", "./views")     // Tells our app where our view (.ejs) files are located
+require("./models");            // Loads our mongodb models
 require("./routes")(app);       // Passes our application into a routes function, which binds functions to its endpoints
 
 // Run the server which will listen on port 8080
