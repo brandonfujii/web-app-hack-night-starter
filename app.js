@@ -15,7 +15,7 @@ if (actual.version != expected.version) {
 }
 
 app.use(express.json())         // Makes sure we can parse JSON that is sent to our API
-app.use("public",express.static("./public")); // Tells our app where our client-side assets live
+app.use(express.static('./public')); // Tells our app where our client-side assets live
 app.set("view engine", "ejs")   // Allows our views to be constructed using ejs templating
 app.set("views", "./views")     // Tells our app where our view (.ejs) files are located
 require("./models");            // Loads our mongodb models

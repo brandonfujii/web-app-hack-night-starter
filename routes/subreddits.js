@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
         if (err) {
             res.status(500).json({ error: err })
         } else {
-            res.status(200).json({ subreddits: subs })
+            res.render("subreddits.ejs", {subs: subs})
         }
     })
 })
@@ -31,10 +31,9 @@ router.get("/:id", (req, res) => {
 /* Create a subreddit based on a title and description */
 router.post("/", (req, res) => {
     const { title, description } = req.body
-    
     subreddit.create({
-        title,
-        description,
+        title: title,
+        description: description,
     }, (err, sub) => {
         if (err) {
             res.status(500).json({ error: err })
