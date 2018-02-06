@@ -13,7 +13,7 @@ $('#subreddit-form').submit(function(event) {
 			window.location.reload();
 		},
 		error: function(jqXHR, status, err) {
-			// TODO: Handle error adding to database
+			console.log(err);
 		},
 	});
 	event.preventDefault();

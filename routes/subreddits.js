@@ -36,6 +36,7 @@ router.post("/", (req, res) => {
         description: description,
     }, (err, sub) => {
         if (err) {
+            console.log(err);
             res.status(500).json({ error: err })
         } else {
             res.status(200).json({ subreddit: sub })
