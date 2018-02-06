@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include partials/head %>
+	<title>/r/<%= title %></title>
+</head>
+<body>
+	<% include partials/nav %>
+	<div class="container subreddit">
+		<main>
+			<article>
+				<button class="upvote">up</button>
+				<p class="karma">4</p>
+				<button class="downvote">down</button>
+				<a class="post-title" href="#">Post 1 Title</a>
+			</article>
+			<article>
+				<button class="upvote">up</button>
+				<p class="karma">1</p>
+				<button class="downvote">down</button>
+				<a class="post-title" href="#">Post 2 Title</a>
+			</article>
+		</main>
+		<aside>
+			<h1>/r/<%= title %></h1>
+			<p><%= description %></p>
+		</aside>
+	</div>
+</body>
+</html>

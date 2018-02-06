@@ -1,4 +1,51 @@
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* Navbar */
+nav {
+	height: 64px;
+	background-color: rgba(206, 227, 248, 0.7);
+	padding-left: 10px;
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+}
+
+.nav-link {
+	margin-right: 10px;
+}
+
+/* subreddits.ejs */
+form > * {
+	display: block;
+	margin-bottom: 10px;
+}
+
+/* SUB.ejs */
+.subreddit {
+	display: flex;
+}
+
+.container > main {
+	flex: 0.7;
+}
+
+.container > aside {
+	flex: 0.3;
+}
+
+main > article {
+	display: flex;
+	margin-bottom: 10px;
+	align-items: center;
+}
+
+.post-title {
+	padding-left: 20px;
 }

@@ -5,11 +5,11 @@
 	<title>Subreddits</title>
 </head>
 <body>
+	<% include partials/nav %>
 	<div class="container">
-		<h1>Subreddits!</h1>
 		<% for (let i = 0; i < subs.length; i++) { %>
-			<div class="subreddit">
-				<h3><a href="/subreddits/<%= subs[i].id %>"><%= subs[i].title %></a></h3>
+			<div class="subreddit-item">
+				<h3><a href="/subreddits/<%= subs[i].id %>">/r/<%= subs[i].title %></a></h3>
 				<p><%= subs[i].description %></p>
 			</div>
 		<% } %>

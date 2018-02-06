@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
         if (err) {
             res.status(500).json({ error: err })
         } else {
-            res.render("subreddits.ejs", {subs: subs})
+            res.render("subreddits", {subs: subs})
         }
     })
 })
@@ -23,7 +23,7 @@ router.get("/:id", (req, res) => {
         if (err) {
             res.status(500).json({ error: err })
         } else {
-            res.status(200).json({ subreddit: sub })
+            res.render("sub", sub);
         }
     })
 })

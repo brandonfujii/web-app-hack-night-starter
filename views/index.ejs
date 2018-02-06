@@ -5,7 +5,9 @@
   <title><%= title %></title>
 </head>
 <body>
-  <%= message %>
-  <p>Check out the <a href="/subreddits">subreddits!</a></p>
+	<% include partials/nav %>
+	<div class="container">
+		<%= message %>
+	</div>
 </body>
 </html>
