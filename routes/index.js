@@ -1,5 +1,5 @@
 const subredditsRouter = require("./subreddits")
-// const postsRouter = require("./posts")
+const postsRouter = require("./posts")
 
 function routes(app) {
     // View routes
@@ -9,7 +9,7 @@ function routes(app) {
 
     // API routes
     app.use("/subreddits", subredditsRouter)
-    // app.use("/posts", postsRouter)
+    app.use("/posts", postsRouter)
 }
 
 module.exports = routes
