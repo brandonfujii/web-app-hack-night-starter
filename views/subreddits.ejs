@@ -7,26 +7,32 @@
 <body>
 	<% include partials/nav %>
 	<div class="container">
-		<% for (let i = 0; i < subs.length; i++) { %>
-			<div class="subreddit-item">
-				<h3><a href="/subreddits/<%= subs[i].id %>">/r/<%= subs[i].title %></a></h3>
-				<p><%= subs[i].description %></p>
-			</div>
-		<% } %>
-
-		<h2>Create a new subreddit:</h2>
-		<form id="subreddit-form" action="/subreddits" method="post">
-			<label for="title">Subreddit Title</label>
-			<input type="text" name="title" id="form-title" required>
-			<label for="description">Subreddit Description</label>
-			<textarea type="description" name="description" id="form-description"></textarea>
-			<button type="submit">Create</button>
-		</form>
+		<div id="create-subreddit">
+			<h2>Create a new subreddit:</h2>
+			<form id="subreddit-form"
+				  action="/subreddits"
+				  method="post"
+				  onsubmit="submitForm(this);">
+				<label for="title">Subreddit Title</label>
+				<input type="text" name="title" id="form-title" required>
+				<label for="description">Subreddit Description</label>
+				<textarea type="description" name="description" id="form-description"></textarea>
+				<button type="submit">Create</button><button type="reset">Reset</button>
+			</form>
+		</div>
+		<div id="subreddits">
+			<% for (let i = 0; i < subs.length; i++) { %>
+				<div class="subreddit-item">
+					<h3><a href="/subreddits/<%= subs[i].id %>">/r/<%= subs[i].title %></a></h3>
+					<p><%= subs[i].description %></p>
+				</div>
+			<% } %>
+		</div>
 	</div>
 	<script
-	src="http://code.jquery.com/jquery-3.3.1.min.js"
-	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-	crossorigin="anonymous"></script>
+		src="http://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="/scripts/subreddits.js"></script>
 </body>
 </html>
