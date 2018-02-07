@@ -1,10 +1,11 @@
 const express = require("express")
 const router = express.Router();
-const subreddit = require("../models/subreddit")
+const SubredditModel = require("../models/subreddit")
+const PostModel = require("../models/post")
 
 /* Fetch all subreddits */
 router.get("/", (req, res) => {
-    subreddit.find({}, (err, subs) => {
+    SubredditModel.find({}, (err, subs) => {
         if (err) {
             res.status(500).json({ error: err })
         } else {
@@ -13,25 +14,51 @@ router.get("/", (req, res) => {
     })
 })
 
-/* Get a subreddit by a specific ID  */
+/* Get a subreddit and its posts by a specific subreddit ID  */
 router.get("/:id", (req, res) => {
     const subredditId = req.params.id
-    
-    subreddit.findOne({
-        _id: subredditId
-    }, (err, sub) => {
+
+    SubredditModel.findById(subredditId)
+        .populate("posts")
+        .exec((err, sub) => {
+            if (err) {
+                res.status(500).json({ error: err })
+            }
+            
+            res.render("sub", sub)
+        })
+})
+
+/* Create a post on subreddit by id */
+router.post("/:id", (req, res) => {
+    const subredditId = req.params.id
+    const { title, link, content } = req.body
+
+    PostModel.create({ 
+        title,
+        link,
+        content,
+    }, (err, post) => {
         if (err) {
             res.status(500).json({ error: err })
-        } else {
-            res.render("sub", sub);
         }
+
+        SubredditModel.update(
+            { _id: subredditId },
+            { $push: { posts: post._id }},
+            (err, message) => {
+                if (err) res.status(500).json({ error: err })
+                res.status(200).json({ message })
+            }
+        )
     })
 })
 
 /* Create a subreddit based on a title and description */
 router.post("/", (req, res) => {
     const { title, description } = req.body
-    subreddit.create({
+
+    SubredditModel.create({
         title: title,
         description: description,
     }, (err, sub) => {
