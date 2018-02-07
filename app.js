@@ -3,7 +3,7 @@ const semver = require("semver")
 const pkg = require("./package.json")
 
 const app = express()
-const port = 8080
+const port = process.env.PORT || 8080
 
 // Checking node versions
 const actual = semver(process.version)
