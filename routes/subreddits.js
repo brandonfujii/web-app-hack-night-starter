@@ -40,15 +40,20 @@ router.post("/:id", (req, res) => {
         content,
     }, (err, post) => {
         if (err) {
+            console.error(err)
             res.status(500).json({ error: err })
+            return
         }
 
         SubredditModel.update(
             { _id: subredditId },
             { $push: { posts: post._id }},
             (err, message) => {
-                if (err) res.status(500).json({ error: err })
-                res.status(200).json({ message })
+                if (err) {
+                    res.status(500).json({ error: err })
+                } else {
+                    res.status(200).json({ message })
+                }
             }
         )
     })
