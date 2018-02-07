@@ -8,7 +8,7 @@ const db = {
     password: "test",
 }
 
-let dbUri = process.env.NODE_ENV == 'production' ? process.env.MONGO_URI : `mongodb://${db.username}:${db.password}@${db.host}:${db.port}/${db.name}`;
+let dbUri = process.env.NODE_ENV == 'production' ? process.env.MONGODB_URI : `mongodb://${db.username}:${db.password}@${db.host}:${db.port}/${db.name}`;
 
 mongoose.connect(dbUri)
     .then(instance => console.log(`(ノ‥)ノ Successfully connected to database ${db.name} on the mongodb instance ${db.host}:${db.port}`))
