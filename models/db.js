@@ -8,7 +8,9 @@ const db = {
     password: "test",
 }
 
-mongoose.connect(`mongodb://${db.username}:${db.password}@${db.host}:${db.port}/${db.name}`)
+let dbUri = process.env.NODE_ENV == 'production' ? process.env.MONGO_URI : `mongodb://${db.username}:${db.password}@${db.host}:${db.port}/${db.name}`;
+
+mongoose.connect(dbUri)
     .then(instance => console.log(`(ノ‥)ノ Successfully connected to database ${db.name} on the mongodb instance ${db.host}:${db.port}`))
     .catch(err => {
         console.error(`(╯°▽°)╯ ┻━┻ The following database error occurred:\n${err}`)
