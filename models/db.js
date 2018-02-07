@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const db = {
+const db = { 
     host: "127.0.0.1",
     port: 27017,
     name: "reddit_db",
